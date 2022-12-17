@@ -21,12 +21,12 @@ module.exports = {
                 accountsBalance: "100000000000000000000000"
             }
         },
-        optimisticKovan: {
-            url: 'https://kovan.optimism.io',
-            gas: 1000000000,
-            gasPrice: 10000,
-            accounts: [`0x${opkovankey}`]
-        }
+        // optimisticKovan: {
+        //     url: 'https://kovan.optimism.io',
+        //     gas: 1000000000,
+        //     gasPrice: 10000,
+        //     accounts: [`0x${opkovankey}`]
+        // }
     },
     etherscan: {
         apiKey:`${etherscanApiKey}`
@@ -43,5 +43,3 @@ module.exports = {
         }]
     }
 }
-
-
