@@ -325,9 +325,8 @@ contract PikaPerpV3 is ReentrancyGuard {
 
         _updatePendingRewards(tradeFee);
 
-        uint256 price = _calculatePrice(product.productToken, isLong, product.openInterestLong,
-            product.openInterestShort, uint256(vault.balance) * uint256(product.weight) * exposureMultiplier / uint256(totalWeight) / (10**4),
-            uint256(product.reserve), margin * leverage / BASE);
+        uint256 price = _calculatePrice(product.productToken, isLong, product.openInterestLong, product.openInterestShort,
+            getMaxExposure(uint256(product.weight)), uint256(product.reserve), margin * leverage / BASE);
 
         _updateFundingAndOpenInterest(productId, margin * leverage / BASE, isLong, true);
         int256 funding = IFundingManager(fundingManager).getFunding(productId);
