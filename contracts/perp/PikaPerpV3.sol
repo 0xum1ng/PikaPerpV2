@@ -9,7 +9,7 @@ import '../lib/UniERC20.sol';
 import '../lib/PerpLib.sol';
 import './IPikaPerp.sol';
 import './IFundingManager.sol';
-import '../staking/IVaultReward.sol';
+/* import '../staking/IVaultReward.sol'; */
 
 contract PikaPerpV3 is ReentrancyGuard {
     using SafeERC20 for IERC20;
@@ -217,14 +217,19 @@ contract PikaPerpV3 is ReentrancyGuard {
         oracle = _oracle;
         feeCalculator = _feeCalculator;
         fundingManager = _fundingManager;
+
+        // TODO: temp setters
+        protocolRewardDistributor = msg.sender;
+        pikaRewardDistributor = msg.sender;
+        vaultRewardDistributor = msg.sender;
     }
 
     // Methods
 
     function stake(uint256 amount, address user) external payable nonReentrant {
         require((canUserStake || msg.sender == owner) && (msg.sender == user || _validateManager(user)), "!stake");
-        IVaultReward(vaultRewardDistributor).updateReward(user);
-        IVaultReward(vaultTokenReward).updateReward(user);
+        /* IVaultReward(vaultRewardDistributor).updateReward(user); */
+        /* IVaultReward(vaultTokenReward).updateReward(user); */
         IERC20(token).uniTransferFromSenderToThis(amount * tokenBase / BASE);
         require(uint256(vault.staked) + amount <= uint256(vault.cap), "!cap");
         uint256 shares = vault.staked > 0 ? amount * uint256(vault.shares) / uint256(vault.balance) : amount;
@@ -263,8 +268,8 @@ contract PikaPerpV3 is ReentrancyGuard {
 
         require(shares <= uint256(vault.shares) && (user == msg.sender || _validateManager(user)), "!redeem");
 
-        IVaultReward(vaultRewardDistributor).updateReward(user);
-        IVaultReward(vaultTokenReward).updateReward(user);
+        /* IVaultReward(vaultRewardDistributor).updateReward(user); */
+        /* IVaultReward(vaultTokenReward).updateReward(user); */
         Stake storage _stake = stakes[user];
         bool isFullRedeem = shares >= uint256(_stake.shares);
         if (isFullRedeem) {
@@ -750,7 +755,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         uint256 reserve,
         uint256 amount
     ) private view returns(uint256) {
-        uint256 oraclePrice = isLong ? IOracle(oracle).getPrice(productToken, true) : IOracle(oracle).getPrice(productToken, false);
+        uint256 oraclePrice = IOracle(oracle).getPrice(productToken);
         int256 shift = (int256(openInterestLong) - int256(openInterestShort)) * int256(maxShift) / int256(maxExposure);
         if (isLong) {
             uint256 slippage = (reserve * reserve / (reserve - amount) - reserve) * BASE / amount;
@@ -777,7 +782,7 @@ contract PikaPerpV3 is ReentrancyGuard {
 
     function addProduct(uint256 productId, Product memory _product) external {
         onlyOwner();
-        require(productId > 0);
+        require(productId > 0, "require productId > 0");
         Product memory product = products[productId];
 
         require(product.maxLeverage == 0 && _product.maxLeverage > 1 * BASE && _product.productToken != address(0));

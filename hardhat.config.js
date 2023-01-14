@@ -2,9 +2,10 @@ require("@nomiclabs/hardhat-waffle");
 require('@openzeppelin/hardhat-upgrades');
 require("@nomiclabs/hardhat-web3");
 require("@nomiclabs/hardhat-etherscan");
-require('hardhat-contract-sizer');
+require("hardhat-contract-sizer");
 // require("hardhat-gas-reporter");
-const { infuraApiKey, mnemonic, etherscanApiKey, opkovankey } = require('./secrets.json');
+
+const { etherscanApiKey, privateKey, infuraApiKey } = require('./secrets.json');
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -21,12 +22,10 @@ module.exports = {
                 accountsBalance: "100000000000000000000000"
             }
         },
-        // optimisticKovan: {
-        //     url: 'https://kovan.optimism.io',
-        //     gas: 1000000000,
-        //     gasPrice: 10000,
-        //     accounts: [`0x${opkovankey}`]
-        // }
+        goerli: {
+            url: 'https://rpc.ankr.com/eth_goerli',
+            accounts: [`0x${privateKey}`]
+        }
     },
     etherscan: {
         apiKey:`${etherscanApiKey}`
