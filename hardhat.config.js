@@ -4,8 +4,7 @@ require("@nomiclabs/hardhat-web3");
 require("@nomiclabs/hardhat-etherscan");
 require("hardhat-contract-sizer");
 // require("hardhat-gas-reporter");
-
-const { etherscanApiKey, privateKey, infuraApiKey } = require('./secrets.json');
+require('dotenv-flow').config();
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -24,11 +23,11 @@ module.exports = {
         },
         goerli: {
             url: 'https://rpc.ankr.com/eth_goerli',
-            accounts: [`0x${privateKey}`]
+            accounts: [process.env.PRIVATE_KEY]
         }
     },
     etherscan: {
-        apiKey:`${etherscanApiKey}`
+        apiKey: process.env.ETHERSCAN_API_KEY
     },
     solidity: {
         compilers: [{
