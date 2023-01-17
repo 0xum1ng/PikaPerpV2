@@ -15,7 +15,7 @@ async function deployPikaPerpV3(deployer, network) {
   await perp.addProduct(
     "1", // ID
     [
-      "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e", // ETH chainlink token
+      "0x62CAe0FA2da220f43a51F86Db2EDb36DcA9A5A08", // ETH chainlink token on goerli
       "10000000000", // 100x max leverage
       "50", // In bps. 0.5% = 50.
       true, // active

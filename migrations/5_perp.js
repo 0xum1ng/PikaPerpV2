@@ -2,6 +2,7 @@
 const FeeCalculator = artifacts.require('FeeCalculator')
 const ChainlinkOracle = artifacts.require('ChainlinkOracle')
 const FundingManager = artifacts.require('FundingManager')
+const TestUSDC = artifacts.require('TestUSDC')
 const PikaPerpV3 = artifacts.require('PikaPerpV3')
 
 // ============ Main Migration ============
@@ -16,9 +17,9 @@ async function deployPikaPerpV3(deployer, network) {
   const feeCalculator = await FeeCalculator.deployed()
   const oracle = await ChainlinkOracle.deployed()
   const fundingManager = await FundingManager.deployed()
-  const usdc = "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
+  const testUsdc = await TestUSDC.deployed()
   const tokenBase = "100000000"
-  await deployer.deploy(PikaPerpV3, usdc, tokenBase, feeCalculator.address, oracle.address, fundingManager.address)
+  await deployer.deploy(PikaPerpV3, testUsdc.address, tokenBase, oracle.address, feeCalculator.address, fundingManager.address)
 
   const perp = await PikaPerpV3.deployed()
 
