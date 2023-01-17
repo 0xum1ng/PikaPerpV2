@@ -1,0 +1,348 @@
+{
+  "contractName": "IFundingManager",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateFunding",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFunding",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFundingRate",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"getFunding\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"getFundingRate\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"updateFunding\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/perp/IFundingManager.sol\":\"IFundingManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/perp/IFundingManager.sol\":{\"keccak256\":\"0xf39eeebadbd9a83e706effb9e5ddfd968bfcf1c63d58d6461b728b7907a04bb5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://39bf1a7ee38ddeaeeb3fb1417b9462a5df3c62a9159e7b50c6be42464431a624\",\"dweb:/ipfs/QmexDERhNS5DtR3RZvyi6k7jEYcfoKREuunYCUCNrSLWcW\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ninterface IFundingManager {\n    function updateFunding(uint256) external;\n    function getFunding(uint256) external view returns(int256);\n    function getFundingRate(uint256) external view returns(int256);\n}\n",
+  "sourcePath": "/Users/me/workspace/PikaPerpV2/contracts/perp/IFundingManager.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/perp/IFundingManager.sol",
+    "exportedSymbols": {
+      "IFundingManager": [
+        13552
+      ]
+    },
+    "id": 13553,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13532,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:52"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 13552,
+        "linearizedBaseContracts": [
+          13552
+        ],
+        "name": "IFundingManager",
+        "nameLocation": "67:15:52",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "6ea9f139",
+            "id": 13537,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateFunding",
+            "nameLocation": "98:13:52",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13535,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13534,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13537,
+                  "src": "112:7:52",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13533,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "112:7:52",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "111:9:52"
+            },
+            "returnParameters": {
+              "id": 13536,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "129:0:52"
+            },
+            "scope": 13552,
+            "src": "89:41:52",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ebed4bd4",
+            "id": 13544,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFunding",
+            "nameLocation": "144:10:52",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13540,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13539,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13544,
+                  "src": "155:7:52",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13538,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "155:7:52",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "154:9:52"
+            },
+            "returnParameters": {
+              "id": 13543,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13542,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13544,
+                  "src": "186:6:52",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 13541,
+                    "name": "int256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "186:6:52",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "185:8:52"
+            },
+            "scope": 13552,
+            "src": "135:59:52",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "9f52a261",
+            "id": 13551,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFundingRate",
+            "nameLocation": "208:14:52",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13547,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13546,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13551,
+                  "src": "223:7:52",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13545,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "223:7:52",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "222:9:52"
+            },
+            "returnParameters": {
+              "id": 13550,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13549,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13551,
+                  "src": "254:6:52",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 13548,
+                    "name": "int256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "254:6:52",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "253:8:52"
+            },
+            "scope": 13552,
+            "src": "199:63:52",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 13553,
+        "src": "57:207:52",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:233:52"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-01-14T09:54:29.023Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

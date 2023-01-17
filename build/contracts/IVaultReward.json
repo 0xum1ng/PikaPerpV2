@@ -1,0 +1,145 @@
+{
+  "contractName": "IVaultReward",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "updateReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"updateReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/staking/IVaultReward.sol\":\"IVaultReward\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/staking/IVaultReward.sol\":{\"keccak256\":\"0x5e5cdafb0faf7cf3c0f76d4a7d5c7fc85138a877f25a5ac5f610482db05c1349\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9be9c31a1ab74293396d6818a9c7babea8c358f730ddd16b2361830542410703\",\"dweb:/ipfs/QmSJuxmbfUxnyLysjMG2GjpAbdvphqF3cXy19Tw8b3FuQa\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ninterface IVaultReward {\n    function updateReward(address account) external;\n}\n",
+  "sourcePath": "/Users/me/workspace/PikaPerpV2/contracts/staking/IVaultReward.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/staking/IVaultReward.sol",
+    "exportedSymbols": {
+      "IVaultReward": [
+        21838
+      ]
+    },
+    "id": 21839,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 21832,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:57"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 21838,
+        "linearizedBaseContracts": [
+          21838
+        ],
+        "name": "IVaultReward",
+        "nameLocation": "67:12:57",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "632447c9",
+            "id": 21837,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateReward",
+            "nameLocation": "95:12:57",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 21835,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21834,
+                  "mutability": "mutable",
+                  "name": "account",
+                  "nameLocation": "116:7:57",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 21837,
+                  "src": "108:15:57",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 21833,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "108:7:57",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "107:17:57"
+            },
+            "returnParameters": {
+              "id": 21836,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "133:0:57"
+            },
+            "scope": 21838,
+            "src": "86:48:57",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 21839,
+        "src": "57:79:57",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:105:57"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-01-14T09:54:29.084Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

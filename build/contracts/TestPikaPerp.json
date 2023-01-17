@@ -1,0 +1,379 @@
+{
+  "contractName": "TestPikaPerp",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "distributePikaReward",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPendingPikaReward",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"distributePikaReward\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPendingPikaReward\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/test/TestPikePerp.sol\":\"TestPikaPerp\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/test/TestPikePerp.sol\":{\"keccak256\":\"0x2388c1592170186e17208db1b63cda689342cfa4285df8ec5e1b1cfcbb923b33\",\"urls\":[\"bzz-raw://d96612513817fb444a81f2c52c53552f9033511e427f6b0d50bbea37bab808de\",\"dweb:/ipfs/QmZRj1MwSKzLjWt84aY4LWN52XiQzJshABSyhLDCW9xeXW\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50608f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80631ea8c3a71460375780636e20c3b4146053575b600080fd5b670de0b6b3a76400005b60405190815260200160405180910390f35b6000604156fea2646970667358221220721e1e910a99a3af04efd62c44c5f33d6022e21d5e04bb93346b503af7a48b6764736f6c63430008070033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80631ea8c3a71460375780636e20c3b4146053575b600080fd5b670de0b6b3a76400005b60405190815260200160405180910390f35b6000604156fea2646970667358221220721e1e910a99a3af04efd62c44c5f33d6022e21d5e04bb93346b503af7a48b6764736f6c63430008070033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [
+    {
+      "ast": {
+        "nodeType": "YulBlock",
+        "src": "0:193:71",
+        "statements": [
+          {
+            "nodeType": "YulBlock",
+            "src": "6:3:71",
+            "statements": []
+          },
+          {
+            "body": {
+              "nodeType": "YulBlock",
+              "src": "115:76:71",
+              "statements": [
+                {
+                  "nodeType": "YulAssignment",
+                  "src": "125:26:71",
+                  "value": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "137:9:71"
+                      },
+                      {
+                        "kind": "number",
+                        "nodeType": "YulLiteral",
+                        "src": "148:2:71",
+                        "type": "",
+                        "value": "32"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "add",
+                      "nodeType": "YulIdentifier",
+                      "src": "133:3:71"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "133:18:71"
+                  },
+                  "variableNames": [
+                    {
+                      "name": "tail",
+                      "nodeType": "YulIdentifier",
+                      "src": "125:4:71"
+                    }
+                  ]
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "name": "headStart",
+                        "nodeType": "YulIdentifier",
+                        "src": "167:9:71"
+                      },
+                      {
+                        "name": "value0",
+                        "nodeType": "YulIdentifier",
+                        "src": "178:6:71"
+                      }
+                    ],
+                    "functionName": {
+                      "name": "mstore",
+                      "nodeType": "YulIdentifier",
+                      "src": "160:6:71"
+                    },
+                    "nodeType": "YulFunctionCall",
+                    "src": "160:25:71"
+                  },
+                  "nodeType": "YulExpressionStatement",
+                  "src": "160:25:71"
+                }
+              ]
+            },
+            "name": "abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed",
+            "nodeType": "YulFunctionDefinition",
+            "parameters": [
+              {
+                "name": "headStart",
+                "nodeType": "YulTypedName",
+                "src": "84:9:71",
+                "type": ""
+              },
+              {
+                "name": "value0",
+                "nodeType": "YulTypedName",
+                "src": "95:6:71",
+                "type": ""
+              }
+            ],
+            "returnVariables": [
+              {
+                "name": "tail",
+                "nodeType": "YulTypedName",
+                "src": "106:4:71",
+                "type": ""
+              }
+            ],
+            "src": "14:177:71"
+          }
+        ]
+      },
+      "contents": "{\n    { }\n    function abi_encode_tuple_t_uint256__to_t_uint256__fromStack_reversed(headStart, value0) -> tail\n    {\n        tail := add(headStart, 32)\n        mstore(headStart, value0)\n    }\n}",
+      "id": 71,
+      "language": "Yul",
+      "name": "#utility.yul"
+    }
+  ],
+  "sourceMap": "25:225:64:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:225:64:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;53:101;128:19;53:101;;;160:25:71;;;148:2;133:18;53:101:64;;;;;;;160:88;214:7;160:88;",
+  "source": "pragma solidity ^0.8.0;\n\ncontract TestPikaPerp {\n    function distributePikaReward() external returns(uint256) {\n        return 1000000000000000000;\n    }\n\n    function getPendingPikaReward() external view returns(uint256) {\n        return 0;\n    }\n}\n",
+  "sourcePath": "/Users/me/workspace/PikaPerpV2/contracts/test/TestPikePerp.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/test/TestPikePerp.sol",
+    "exportedSymbols": {
+      "TestPikaPerp": [
+        24801
+      ]
+    },
+    "id": 24802,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 24784,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:64"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 24801,
+        "linearizedBaseContracts": [
+          24801
+        ],
+        "name": "TestPikaPerp",
+        "nameLocation": "34:12:64",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 24791,
+              "nodeType": "Block",
+              "src": "111:43:64",
+              "statements": [
+                {
+                  "expression": {
+                    "hexValue": "31303030303030303030303030303030303030",
+                    "id": 24789,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "128:19:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_1000000000000000000_by_1",
+                      "typeString": "int_const 1000000000000000000"
+                    },
+                    "value": "1000000000000000000"
+                  },
+                  "functionReturnParameters": 24788,
+                  "id": 24790,
+                  "nodeType": "Return",
+                  "src": "121:26:64"
+                }
+              ]
+            },
+            "functionSelector": "1ea8c3a7",
+            "id": 24792,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "distributePikaReward",
+            "nameLocation": "62:20:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24785,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "82:2:64"
+            },
+            "returnParameters": {
+              "id": 24788,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24787,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24792,
+                  "src": "102:7:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 24786,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "102:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "101:9:64"
+            },
+            "scope": 24801,
+            "src": "53:101:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 24799,
+              "nodeType": "Block",
+              "src": "223:25:64",
+              "statements": [
+                {
+                  "expression": {
+                    "hexValue": "30",
+                    "id": 24797,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "240:1:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_0_by_1",
+                      "typeString": "int_const 0"
+                    },
+                    "value": "0"
+                  },
+                  "functionReturnParameters": 24796,
+                  "id": 24798,
+                  "nodeType": "Return",
+                  "src": "233:8:64"
+                }
+              ]
+            },
+            "functionSelector": "6e20c3b4",
+            "id": 24800,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPendingPikaReward",
+            "nameLocation": "169:20:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24793,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "189:2:64"
+            },
+            "returnParameters": {
+              "id": 24796,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24795,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24800,
+                  "src": "214:7:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 24794,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "214:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "213:9:64"
+            },
+            "scope": 24801,
+            "src": "160:88:64",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 24802,
+        "src": "25:225:64",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:251:64"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-01-14T09:54:29.111Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "contractName": "IFeeCalculator",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "productFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "getFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"productFee\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"getFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/perp/IFeeCalculator.sol\":\"IFeeCalculator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/perp/IFeeCalculator.sol\":{\"keccak256\":\"0x5899fd4bcd83b45bc4efe84943fe9ee2c76ab8d5d34381fb9a2a76834c405c45\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c2afec64a68af34d227ef035aeef0e043732738804e84b8584680b1ab7ad5793\",\"dweb:/ipfs/QmbfGKTvBNRWYSbaN2fDeYph1sa8b5rNFzSdKfGFEBChcC\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\ninterface IFeeCalculator {\n    function getFee(address token, uint256 productFee, address user, address sender) external view returns (uint256);\n}\n",
+  "sourcePath": "/Users/me/workspace/PikaPerpV2/contracts/perp/IFeeCalculator.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/perp/IFeeCalculator.sol",
+    "exportedSymbols": {
+      "IFeeCalculator": [
+        13530
+      ]
+    },
+    "id": 13531,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 13516,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:51"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 13530,
+        "linearizedBaseContracts": [
+          13530
+        ],
+        "name": "IFeeCalculator",
+        "nameLocation": "67:14:51",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "6747525a",
+            "id": 13529,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getFee",
+            "nameLocation": "97:6:51",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 13525,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13518,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "112:5:51",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13529,
+                  "src": "104:13:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13517,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "104:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13520,
+                  "mutability": "mutable",
+                  "name": "productFee",
+                  "nameLocation": "127:10:51",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13529,
+                  "src": "119:18:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13519,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "119:7:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13522,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nameLocation": "147:4:51",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13529,
+                  "src": "139:12:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13521,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "139:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 13524,
+                  "mutability": "mutable",
+                  "name": "sender",
+                  "nameLocation": "161:6:51",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13529,
+                  "src": "153:14:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 13523,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "153:7:51",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "103:65:51"
+            },
+            "returnParameters": {
+              "id": 13528,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 13527,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13529,
+                  "src": "192:7:51",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 13526,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "192:7:51",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "191:9:51"
+            },
+            "scope": 13530,
+            "src": "88:113:51",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 13531,
+        "src": "57:146:51",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:172:51"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-01-14T09:54:29.023Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

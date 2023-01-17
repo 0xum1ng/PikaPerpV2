@@ -1,0 +1,244 @@
+{
+  "contractName": "IPika",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "burn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"burn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"mint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/token/IPika.sol\":\"IPika\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/token/IPika.sol\":{\"keccak256\":\"0x01a4b13c727d9b129b1ee4df73ed4ed8cc620469e69fb28afc9232d17b52567e\",\"urls\":[\"bzz-raw://3c11324b9fd56dff35a0ede05bc51c367b0da24c64b522bf476781a0eb0e0997\",\"dweb:/ipfs/QmfVM1Q3KTvTzA5e8TL4hXHSEEMBeWGP5ojW8nQfmPywox\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.8.0;\n\ninterface IPika {\n    function mint(address _recipient, uint256 _amount) external;\n    function burn(uint256 _amount) external;\n}\n",
+  "sourcePath": "/Users/me/workspace/PikaPerpV2/contracts/token/IPika.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/token/IPika.sol",
+    "exportedSymbols": {
+      "IPika": [
+        24816
+      ]
+    },
+    "id": 24817,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 24803,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:65"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 24816,
+        "linearizedBaseContracts": [
+          24816
+        ],
+        "name": "IPika",
+        "nameLocation": "35:5:65",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "40c10f19",
+            "id": 24810,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mint",
+            "nameLocation": "56:4:65",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24808,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24805,
+                  "mutability": "mutable",
+                  "name": "_recipient",
+                  "nameLocation": "69:10:65",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24810,
+                  "src": "61:18:65",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 24804,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "61:7:65",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 24807,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "89:7:65",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24810,
+                  "src": "81:15:65",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 24806,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "81:7:65",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "60:37:65"
+            },
+            "returnParameters": {
+              "id": 24809,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "106:0:65"
+            },
+            "scope": 24816,
+            "src": "47:60:65",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "42966c68",
+            "id": 24815,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "burn",
+            "nameLocation": "121:4:65",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 24813,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 24812,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "134:7:65",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 24815,
+                  "src": "126:15:65",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 24811,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "126:7:65",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "125:17:65"
+            },
+            "returnParameters": {
+              "id": 24814,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "151:0:65"
+            },
+            "scope": 24816,
+            "src": "112:40:65",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 24817,
+        "src": "25:129:65",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:155:65"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-01-14T09:54:29.112Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
