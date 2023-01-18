@@ -5,13 +5,15 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import '../oracle/IOracle.sol';
+import '../lib/UniERC20.sol';
+import '../lib/PerpLib.sol';
 import './IPikaPerp.sol';
 import './IFundingManager.sol';
-import './IFeeCalculator.sol';
 /* import '../staking/IVaultReward.sol'; */
 
 contract PikaPerpV3 is ReentrancyGuard {
     using SafeERC20 for IERC20;
+    using UniERC20 for IERC20;
     // All amounts are stored with 8 decimals
 
     // Structs
@@ -102,7 +104,6 @@ contract PikaPerpV3 is ReentrancyGuard {
     bool private isManagerOnlyForClose = false;
     Vault private vault;
     uint256 private constant BASE = 10**8;
-    uint256 private constant FUNDING_BASE = 10**12;
 
     mapping(uint256 => Product) private products;
     mapping(address => Stake) private stakes;
@@ -229,7 +230,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         require((canUserStake || msg.sender == owner) && (msg.sender == user || _validateManager(user)), "!stake");
         /* IVaultReward(vaultRewardDistributor).updateReward(user); */
         /* IVaultReward(vaultTokenReward).updateReward(user); */
-        IERC20(token).safeTransferFrom(msg.sender, address(this), amount * tokenBase / BASE);
+        IERC20(token).uniTransferFromSenderToThis(amount * tokenBase / BASE);
         require(uint256(vault.staked) + amount <= uint256(vault.cap), "!cap");
         uint256 shares = vault.staked > 0 ? amount * uint256(vault.shares) / uint256(vault.balance) : amount;
         vault.balance += uint128(amount);
@@ -293,7 +294,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         if (isFullRedeem) {
             delete stakes[user];
         }
-        IERC20(token).safeTransfer(receiver, shareBalance * tokenBase / BASE);
+        IERC20(token).uniTransfer(receiver, shareBalance * tokenBase / BASE);
 
         emit Redeemed(
             user,
@@ -324,9 +325,9 @@ contract PikaPerpV3 is ReentrancyGuard {
         require(leverage <= uint256(product.maxLeverage), "!max-lev");
 
         // Transfer margin plus fee
-        uint256 tradeFee = _getTradeFee(margin, leverage, uint256(product.fee), product.productToken, user, msg.sender, feeCalculator);
-        IERC20(token).safeTransferFrom(msg.sender, address(this), (margin + tradeFee) * tokenBase / BASE);
-        
+        uint256 tradeFee = PerpLib._getTradeFee(margin, leverage, uint256(product.fee), product.productToken, user, msg.sender, feeCalculator);
+        IERC20(token).uniTransferFromSenderToThis((margin + tradeFee) * tokenBase / BASE);
+
         _updatePendingRewards(tradeFee);
 
         uint256 price = _calculatePrice(product.productToken, isLong, product.openInterestLong, product.openInterestShort,
@@ -377,7 +378,7 @@ contract PikaPerpV3 is ReentrancyGuard {
     // Add margin to Position with positionId
     function addMargin(uint256 positionId, uint256 margin) external payable nonReentrant {
 
-        IERC20(token).safeTransferFrom(msg.sender, address(this), margin * tokenBase / BASE);
+        IERC20(token).uniTransferFromSenderToThis(margin * tokenBase / BASE);
 
         // Check params
         require(margin >= minMargin, "!margin");
@@ -436,8 +437,8 @@ contract PikaPerpV3 is ReentrancyGuard {
             getMaxExposure(uint256(product.weight)), uint256(product.reserve), margin * position.leverage / BASE);
 
         _updateFundingAndOpenInterest(uint256(position.productId), margin * uint256(position.leverage) / BASE, position.isLong, false);
-        int256 fundingPayment = _getFundingPayment(fundingManager, position.isLong, position.productId, position.leverage, margin, position.funding);
-        int256 pnl = _getPnl(position.isLong, uint256(position.price), uint256(position.leverage), margin, price) - fundingPayment;
+        int256 fundingPayment = PerpLib._getFundingPayment(fundingManager, position.isLong, position.productId, position.leverage, margin, position.funding);
+        int256 pnl = PerpLib._getPnl(position.isLong, uint256(position.price), uint256(position.leverage), margin, price) - fundingPayment;
         bool isLiquidatable;
         if (pnl < 0 && uint256(-1 * pnl) >= margin * liquidationThreshold / (10**4)) {
             margin = uint256(position.margin);
@@ -446,7 +447,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         } else {
             // front running protection: if oracle price up change is smaller than threshold and minProfitTime has not passed
             // and either open or close order is not using next oracle price, the pnl is be set to 0
-            if (pnl > 0 && !_canTakeProfit(position.isLong, uint256(position.timestamp), uint256(position.oraclePrice),
+            if (pnl > 0 && !PerpLib._canTakeProfit(position.isLong, uint256(position.timestamp), uint256(position.oraclePrice),
                 IOracle(oracle).getPrice(product.productToken), product.minPriceChange, minProfitTime) && (!position.isNextPrice || !nextPriceManagers[msg.sender])) {
                 pnl = 0;
             }
@@ -482,13 +483,13 @@ contract PikaPerpV3 is ReentrancyGuard {
         uint256 fee,
         address productToken
     ) private returns(uint256) {
-        uint256 totalFee = _getTradeFee(margin, uint256(position.leverage), fee, productToken, position.owner, msg.sender, feeCalculator);
+        uint256 totalFee = PerpLib._getTradeFee(margin, uint256(position.leverage), fee, productToken, position.owner, msg.sender, feeCalculator);
         int256 pnlAfterFee = pnl - int256(totalFee);
         // Update vault
         if (pnlAfterFee < 0) {
             uint256 _pnlAfterFee = uint256(-1 * pnlAfterFee);
             if (_pnlAfterFee < margin) {
-                IERC20(token).safeTransfer(position.owner, (margin - _pnlAfterFee) * tokenBase / BASE);
+                IERC20(token).uniTransfer(position.owner, (margin - _pnlAfterFee) * tokenBase / BASE);
                 vault.balance += uint128(_pnlAfterFee);
             } else {
                 vault.balance += uint128(margin);
@@ -501,7 +502,7 @@ contract PikaPerpV3 is ReentrancyGuard {
             require(uint256(vault.balance) >= _pnlAfterFee, "!bal");
             vault.balance -= uint128(_pnlAfterFee);
 
-            IERC20(token).safeTransfer(position.owner, (margin + _pnlAfterFee) * tokenBase / BASE);
+            IERC20(token).uniTransfer(position.owner, (margin + _pnlAfterFee) * tokenBase / BASE);
         }
 
         _updatePendingRewards(totalFee);
@@ -521,7 +522,7 @@ contract PikaPerpV3 is ReentrancyGuard {
             totalLiquidatorReward = totalLiquidatorReward + liquidatorReward;
         }
         if (totalLiquidatorReward > 0) {
-            IERC20(token).safeTransfer(msg.sender, totalLiquidatorReward * tokenBase / BASE);
+            IERC20(token).uniTransfer(msg.sender, totalLiquidatorReward * tokenBase / BASE);
         }
     }
 
@@ -538,8 +539,8 @@ contract PikaPerpV3 is ReentrancyGuard {
 
         uint256 remainingReward;
         _updateFundingAndOpenInterest(uint256(position.productId), uint256(position.margin) * uint256(position.leverage) / BASE, position.isLong, false);
-        int256 fundingPayment = _getFundingPayment(fundingManager, position.isLong, position.productId, position.leverage, position.margin, position.funding);
-        int256 pnl = _getPnl(position.isLong, position.price, position.leverage, position.margin, price) - fundingPayment;
+        int256 fundingPayment = PerpLib._getFundingPayment(fundingManager, position.isLong, position.productId, position.leverage, position.margin, position.funding);
+        int256 pnl = PerpLib._getPnl(position.isLong, position.price, position.leverage, position.margin, price) - fundingPayment;
         // can only liquidate if negative pnl and lose is greater than margin * liquidation threshold
         require(
             pnl < 0 && uint256(-1 * pnl) >= uint256(position.margin) * liquidationThreshold / (10**4),
@@ -629,7 +630,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         uint256 _pendingProtocolReward = pendingProtocolReward * tokenBase / BASE;
         if (pendingProtocolReward > 0) {
             pendingProtocolReward = 0;
-            IERC20(token).safeTransfer(protocolRewardDistributor, _pendingProtocolReward);
+            IERC20(token).uniTransfer(protocolRewardDistributor, _pendingProtocolReward);
             emit ProtocolRewardDistributed(protocolRewardDistributor, _pendingProtocolReward);
         }
         return _pendingProtocolReward;
@@ -640,7 +641,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         uint256 _pendingPikaReward = pendingPikaReward * tokenBase / BASE;
         if (pendingPikaReward > 0) {
             pendingPikaReward = 0;
-            IERC20(token).safeTransfer(pikaRewardDistributor, _pendingPikaReward);
+            IERC20(token).uniTransfer(pikaRewardDistributor, _pendingPikaReward);
             emit PikaRewardDistributed(pikaRewardDistributor, _pendingPikaReward);
         }
         return _pendingPikaReward;
@@ -651,7 +652,7 @@ contract PikaPerpV3 is ReentrancyGuard {
         uint256 _pendingVaultReward = pendingVaultReward * tokenBase / BASE;
         if (pendingVaultReward > 0) {
             pendingVaultReward = 0;
-            IERC20(token).safeTransfer(vaultRewardDistributor, _pendingVaultReward);
+            IERC20(token).uniTransfer(vaultRewardDistributor, _pendingVaultReward);
             emit VaultRewardDistributed(vaultRewardDistributor, _pendingVaultReward);
         }
         return _pendingVaultReward;
@@ -744,83 +745,6 @@ contract PikaPerpV3 is ReentrancyGuard {
     }
 
     // Private methods
-
-    function _canTakeProfit(
-        bool isLong,
-        uint256 positionTimestamp,
-        uint256 positionOraclePrice,
-        uint256 oraclePrice,
-        uint256 minPriceChange,
-        uint256 minProfitTime
-    ) internal view returns(bool) {
-        if (block.timestamp > positionTimestamp + minProfitTime) {
-            return true;
-        } else if (isLong && oraclePrice > positionOraclePrice * (10**4 + minPriceChange) / (10**4)) {
-            return true;
-        } else if (!isLong && oraclePrice < positionOraclePrice * (10**4 - minPriceChange) / (10**4)) {
-            return true;
-        }
-        return false;
-    }
-
-    function _getPnl(
-        bool isLong,
-        uint256 positionPrice,
-        uint256 positionLeverage,
-        uint256 margin,
-        uint256 price
-    ) internal view returns(int256 _pnl) {
-        bool pnlIsNegative;
-        uint256 pnl;
-        if (isLong) {
-            if (price >= positionPrice) {
-                pnl = margin * positionLeverage * (price - positionPrice) / positionPrice / BASE;
-            } else {
-                pnl = margin * positionLeverage * (positionPrice - price) / positionPrice / BASE;
-                pnlIsNegative = true;
-            }
-        } else {
-            if (price > positionPrice) {
-                pnl = margin * positionLeverage * (price - positionPrice) / positionPrice / BASE;
-                pnlIsNegative = true;
-            } else {
-                pnl = margin * positionLeverage * (positionPrice - price) / positionPrice / BASE;
-            }
-        }
-
-        if (pnlIsNegative) {
-            _pnl = -1 * int256(pnl);
-        } else {
-            _pnl = int256(pnl);
-        }
-
-        return _pnl;
-    }
-
-    function _getFundingPayment(
-        address fundingManager,
-        bool isLong,
-        uint256 productId,
-        uint256 positionLeverage,
-        uint256 margin,
-        int256 funding
-    ) internal view returns(int256) {
-        return isLong ? int256(margin * positionLeverage) * (IFundingManager(fundingManager).getFunding(productId) - funding) / int256(BASE * FUNDING_BASE) :
-            int256(margin * positionLeverage) * (funding - IFundingManager(fundingManager).getFunding(productId)) / int256(BASE * FUNDING_BASE);
-    }
-
-    function _getTradeFee(
-        uint256 margin,
-        uint256 leverage,
-        uint256 productFee,
-        address productToken,
-        address user,
-        address sender,
-        address feeCalculator
-    ) internal view returns(uint256) {
-        uint256 fee = IFeeCalculator(feeCalculator).getFee(productToken, productFee, user, sender);
-        return margin * leverage / BASE * fee / 10**4;
-    }
 
     function _calculatePrice(
         address productToken,

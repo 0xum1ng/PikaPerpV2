@@ -6,7 +6,7 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
 contract TestUSDC is ERC20 {
     constructor()
-    ERC20('YOLO USDC', 'USDC')
+    ERC20('TUSD', 'TUSD')
     public {
     }
 
